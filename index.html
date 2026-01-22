@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>نموذج توثيق تنفيذ برنامج / مبادرة / حملة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <div class="app">
+        <header class="topbar">
+            <!-- <div class="brand"> -->
+            <!-- <div class="brand__mark" aria-hidden="true">PDF</div> -->
+            <!-- <div class="brand__text">
+                    <div class="brand__title">مولّد PDF</div>
+                    <div class="brand__subtitle">أدخل البيانات ثم اعرض/نزّل ملف PDF</div>
+                </div> -->
+            <!-- </div> -->
+            <div class="topbar__actions">
+                <button id="btnFillDemo" class="btn btn--ghost" type="button">
+                    تعبئة مثال
+                </button>
+                <button id="btnGenerate" class="btn btn--primary" type="button">
+                    إنشاء PDF
+                </button>
+            </div>
+        </header>
+
+        <main class="grid">
+            <section class="card">
+                <!-- <h2 class="card__title">المدخلات</h2> -->
+                <!-- <p class="card__hint">
+                    كل الحقول مطلوبة ما عدا <span class="badge">صورة الباركود (اختيارية)</span>.
+                </p> -->
+
+                <form id="infoForm" class="form" autocomplete="off">
+                    <div class="form__row">
+                        <label class="field">
+                            <span class="field__label">اسم المدرسة</span>
+                            <input class="field__input" name="schoolName" type="text" placeholder="مثال: ثانوية النور"
+                                required />
+                        </label>
+                        <label class="field">
+                            <span class="field__label">العنوان</span>
+                            <input class="field__input" name="address" type="text"
+                                placeholder="مثال: الرياض — حي المروج" required />
+                        </label>
+                    </div>
+
+                    <div class="form__row">
+                        <label class="field">
+                            <span class="field__label">الفئة المنفذة</span>
+                            <input class="field__input" name="executingGroup" type="text"
+                                placeholder="مثال: فريق التوعية الصحية" required />
+                        </label>
+                        <label class="field">
+                            <span class="field__label">عدد المستفيدين</span>
+                            <input class="field__input" name="beneficiaries" type="number" min="0"
+                                placeholder="مثال: 120" required />
+                        </label>
+                    </div>
+
+                    <div class="form__row">
+                        <label class="field">
+                            <span class="field__label">تاريخ التنفيذ (هجري)</span>
+                            <input class="field__input" name="executionDate" type="text" value="1447/01/01" required />
+                        </label>
+                        <label class="field">
+                            <span class="field__label">مكان التنفيذ</span>
+                            <input class="field__input" name="executionPlace" type="text"
+                                placeholder="مثال: قاعة الأنشطة" required />
+                        </label>
+                    </div>
+
+                    <label class="field">
+                        <span class="field__label">الأهداف</span>
+                        <textarea class="field__input field__textarea" name="goals" rows="4"
+                            placeholder="اكتب الأهداف باختصار..." required></textarea>
+                    </label>
+
+                    <label class="field">
+                        <span class="field__label">صور الشواهد (4 صور)</span>
+                        <input class="field__input" name="evidenceImages" type="file" accept="image/*" multiple
+                            required />
+                        <span class="field__help">سيتم عرض 4 صور شواهد في التقرير.</span>
+                    </label>
+
+                    <label class="field">
+                        <span class="field__label">صورة الباركود (اختياري)</span>
+                        <input class="field__input" name="barcodeImage" type="file" accept="image/*" />
+                        <span class="field__help">يمكنك رفع صورة باركود / QR جاهزة ليتم تضمينها في PDF.</span>
+                    </label>
+                </form>
+
+                <div class="card__footer">
+                    <div class="note">
+                        <div class="note__title">معلومة</div>
+                        <div class="note__body">
+                            المعاينة ستظهر بعد إنشاء PDF. يمكنك إعادة التوليد في أي وقت.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="previewHeader">
+                    <h2 class="card__title">المعاينة</h2>
+                    <div class="previewHeader__actions">
+                        <a id="downloadLink" class="btn btn--secondary is-disabled" href="#" download>تحميل PDF</a>
+                    </div>
+                </div>
+
+                <div class="preview">
+                    <div id="emptyState" class="empty">
+                        <div class="empty__title">لا يوجد PDF بعد</div>
+                        <div class="empty__body">
+                            اضغط <b>إنشاء PDF</b> لعرض المعاينة هنا.
+                        </div>
+                    </div>
+                    <iframe id="pdfFrame" class="preview__frame is-hidden" title="PDF Preview"></iframe>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- PDF template (rendered to canvas, then to PDF) -->
+    <div class="printRoot" aria-hidden="true">
+        <div id="pdfPage" class="pdfPage">
+            <div class="pdfMoEHeader">
+                <div class="pdfMoETop">
+                    <div class="pdfMoEBlock">
+                        الإدارة العامة للتعليم<br />
+                        بالمنطقة<br />
+                        مكتب التعليم
+                    </div>
+                    <div class="pdfMoELogo">وزارة التعليم</div>
+                </div>
+                <div class="pdfMoEBand"></div>
+            </div>
+
+            <div class="pdfMoEBody">
+                <div class="pdfTwoCol">
+                    <!-- RIGHT: info -->
+                    <div class="pdfPanel pdfPanel--green">
+                        <div class="pdfPanelHeader">تقرير تنفيذ برنامج (تغطية)</div>
+                        <div class="pdfPanelBody">
+                            <div class="pdfInfoGrid">
+                                <div class="pdfInfoRow">
+                                    <div class="pdfInfoKey">اسم المدرسة</div>
+                                    <div id="pdfSchoolName" class="pdfInfoVal">—</div>
+                                </div>
+                                <div class="pdfInfoRow">
+                                    <div class="pdfInfoKey">العنوان</div>
+                                    <div id="pdfAddress" class="pdfInfoVal">—</div>
+                                </div>
+                                <div class="pdfInfoRow">
+                                    <div class="pdfInfoKey">الفئة المنفذة</div>
+                                    <div id="pdfExecutingGroup" class="pdfInfoVal">—</div>
+                                </div>
+                                <div class="pdfInfoRow">
+                                    <div class="pdfInfoKey">عدد المستفيدين</div>
+                                    <div id="pdfBeneficiaries" class="pdfInfoVal">—</div>
+                                </div>
+                                <div class="pdfInfoRow">
+                                    <div class="pdfInfoKey">تاريخ التنفيذ</div>
+                                    <div id="pdfExecutionDate" class="pdfInfoVal">—</div>
+                                </div>
+                                <div class="pdfInfoRow">
+                                    <div class="pdfInfoKey">مكان التنفيذ</div>
+                                    <div id="pdfExecutionPlace" class="pdfInfoVal">—</div>
+                                </div>
+                            </div>
+
+                            <div class="pdfPanel pdfPanel--green" style="margin-top:12px">
+                                <div class="pdfPanelHeader">أهداف البرنامج</div>
+                                <div id="pdfGoals" class="pdfBigBox">—</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- LEFT: evidence images -->
+                    <div class="pdfPanel">
+                        <div class="pdfPanelHeader">شواهد البرنامج</div>
+                        <div class="pdfPanelBody">
+                            <div class="pdfEvidenceCol" id="pdfEvidenceCol">
+                                <div class="pdfEvidenceSlot">
+                                    <img id="evImg1" class="is-hidden" alt="شاهد 1" />
+                                    <div class="pdfEvidenceSlot__label">الشاهد 1</div>
+                                </div>
+                                <div class="pdfEvidenceSlot">
+                                    <img id="evImg2" class="is-hidden" alt="شاهد 2" />
+                                    <div class="pdfEvidenceSlot__label">الشاهد 2</div>
+                                </div>
+                                <div class="pdfEvidenceSlot">
+                                    <img id="evImg3" class="is-hidden" alt="شاهد 3" />
+                                    <div class="pdfEvidenceSlot__label">الشاهد 3</div>
+                                </div>
+                                <div class="pdfEvidenceSlot">
+                                    <img id="evImg4" class="is-hidden" alt="شاهد 4" />
+                                    <div class="pdfEvidenceSlot__label">الشاهد 4</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pdfBottomRow">
+                    <div class="pdfNamesBox">
+                        <div class="pdfPanelHeader">معلومات إضافية</div>
+                        <div class="pdfNamesBody">
+                            <div><span style="color:rgba(15,23,42,.70);font-weight:900">رقم المرجع:</span> <span
+                                    id="pdfRef">AUTO</span></div>
+                            <div style="margin-top:6px"><span style="color:rgba(15,23,42,.70);font-weight:900">تم
+                                    الإنشاء:</span> <span id="pdfGeneratedAt">—</span></div>
+                        </div>
+                    </div>
+
+                    <div class="pdfBarcodeBox">
+                        <div class="pdfPanelHeader">الباركود</div>
+                        <img id="barcodeImg" class="barcodeImg is-hidden" alt="صورة الباركود" />
+                        <div id="barcodeEmpty" class="barcodeEmpty">لم يتم إرفاق صورة باركود</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pdfFootBand"></div>
+        </div>
+    </div>
+
+    <!-- libs (بدون integrity لتفادي مشاكل SRI عند الفتح المحلي) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>

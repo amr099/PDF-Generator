@@ -1,0 +1,565 @@
+:root {
+  --bg: #f3f5f7;
+  --panel: #ffffff;
+  --panel2: #ffffff;
+  --border: rgba(15, 23, 42, .14);
+  --text: #0f172a;
+  --muted: rgba(15, 23, 42, .72);
+  --muted2: rgba(15, 23, 42, .55);
+  --brand1: #0ea5a4;
+  /* teal */
+  --brand2: #2563eb;
+  /* blue */
+  --ok: #22c55e;
+  --shadow: 0 10px 24px rgba(2, 6, 23, .10);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Cairo", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 15% 0%, rgba(14, 165, 164, .18), transparent 62%),
+    radial-gradient(900px 500px at 85% 10%, rgba(37, 99, 235, .16), transparent 62%),
+    linear-gradient(180deg, #f7f8fa, #eef2f6 55%, #f7f8fa);
+  color: var(--text);
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 18px 28px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff, #fbfcfe);
+  box-shadow: var(--shadow);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 260px;
+}
+
+.brand__mark {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  letter-spacing: .08em;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--brand2), var(--brand1));
+  box-shadow: 0 12px 24px rgba(37, 99, 235, .18);
+}
+
+.brand__title {
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.brand__subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.topbar__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, .20);
+}
+
+.btn:active {
+  transform: translateY(0px);
+}
+
+.btn--primary {
+  border-color: rgba(14, 165, 164, .50);
+  color: #ffffff;
+  background: linear-gradient(90deg, rgba(37, 99, 235, .98), rgba(14, 165, 164, .92));
+}
+
+.btn--primary:hover {
+  border-color: rgba(37, 99, 235, .45);
+}
+
+.btn--secondary {
+  border-color: rgba(37, 99, 235, .25);
+  background: rgba(37, 99, 235, .06);
+}
+
+.btn--ghost {
+  background: transparent;
+}
+
+.btn.is-disabled {
+  opacity: .45;
+  pointer-events: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: var(--shadow);
+  padding: 16px;
+  min-height: 420px;
+}
+
+.card__title {
+  margin: 0 0 6px 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.card__hint {
+  margin: 0 0 14px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, .14);
+  background: rgba(15, 23, 42, .03);
+  color: var(--text);
+  font-weight: 700;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 520px) {
+  .form__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field__label {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.field__input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, .16);
+  background: #ffffff;
+  color: var(--text);
+  outline: none;
+  transition: border-color .15s ease, background .15s ease;
+}
+
+.field__input::placeholder {
+  color: rgba(15, 23, 42, .35);
+}
+
+.field__input:focus {
+  border-color: rgba(14, 165, 164, .55);
+  box-shadow: 0 0 0 4px rgba(14, 165, 164, .12);
+}
+
+.field__textarea {
+  resize: vertical;
+  min-height: 92px;
+}
+
+.field__help {
+  font-size: 12px;
+  color: var(--muted2);
+}
+
+.card__footer {
+  margin-top: 14px;
+}
+
+.note {
+  border: 1px dashed rgba(255, 255, 255, .18);
+  border-radius: 16px;
+  padding: 12px;
+  background: rgba(255, 255, 255, .04);
+}
+
+.note__title {
+  font-weight: 900;
+  font-size: 13px;
+}
+
+.note__body {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.preview {
+  margin-top: 12px;
+  height: 520px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .14);
+  background: rgba(0, 0, 0, .16);
+}
+
+.preview {
+  border: 1px solid rgba(15, 23, 42, .14);
+  background: #f8fafc;
+}
+
+.preview__frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #111;
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+.empty {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 16px;
+}
+
+.empty__title {
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.empty__body {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 42ch;
+}
+
+/* --------- PDF TEMPLATE (rendered to canvas) --------- */
+.printRoot {
+  position: fixed;
+  left: -99999px;
+  top: 0;
+  width: 1240px;
+  /* large enough for crisp capture */
+}
+
+.pdfPage {
+  width: 794px;
+  /* A4-ish at 96dpi; we upscale in html2canvas */
+  min-height: 1123px;
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 0px;
+  /* look like real page */
+  overflow: hidden;
+  box-shadow: 0 30px 90px rgba(2, 6, 23, .30);
+  border: 1px solid rgba(15, 23, 42, .10);
+  position: relative;
+}
+
+.pdfMoEHeader {
+  padding: 18px 30px 10px;
+}
+
+.pdfMoETop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.pdfMoEBlock {
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.35;
+  font-size: 14px;
+}
+
+.pdfMoELogo {
+  width: 210px;
+  height: 46px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(14, 165, 164, .16), rgba(37, 99, 235, .12));
+  border: 1px solid rgba(15, 23, 42, .10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  color: rgba(15, 23, 42, .55);
+}
+
+.pdfMoEBand {
+  margin-top: 12px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(37, 99, 235, .90), rgba(14, 165, 164, .90));
+}
+
+.pdfMoEBody {
+  padding: 14px 30px 20px;
+}
+
+.pdfTwoCol {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  /* right info bigger, left evidence */
+  gap: 12px;
+}
+
+.pdfPanel {
+  border: 2px solid rgba(37, 99, 235, .55);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.pdfPanel--green {
+  border-color: rgba(14, 165, 164, .55);
+}
+
+.pdfPanelHeader {
+  padding: 10px 14px;
+  font-weight: 900;
+  color: #ffffff;
+  background: linear-gradient(90deg, rgba(37, 99, 235, .95), rgba(14, 165, 164, .90));
+  text-align: center;
+  font-size: 18px;
+}
+
+.pdfPanelBody {
+  padding: 12px 12px;
+}
+
+.pdfInfoGrid {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 10px;
+}
+
+.pdfInfoRow {
+  display: contents;
+}
+
+.pdfInfoKey {
+  padding: 10px 10px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(37, 99, 235, .90), rgba(14, 165, 164, .85));
+  color: #ffffff;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+}
+
+.pdfInfoVal {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 2px solid rgba(37, 99, 235, .35);
+  background: #ffffff;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.pdfBigBox {
+  border: 2px solid rgba(14, 165, 164, .45);
+  border-radius: 14px;
+  background: #ffffff;
+  min-height: 160px;
+  padding: 10px 12px;
+  white-space: pre-wrap;
+  line-height: 1.8;
+}
+
+.pdfEvidenceCol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pdfEvidenceSlot {
+  border: 2px solid rgba(37, 99, 235, .35);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f8fafc;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pdfEvidenceSlot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pdfEvidenceSlot__label {
+  position: absolute;
+  inset: auto 10px 10px auto;
+  background: rgba(15, 23, 42, .62);
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.pdfBottomRow {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.pdfNamesBox {
+  border: 2px solid rgba(37, 99, 235, .35);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.pdfNamesBody {
+  padding: 12px 14px;
+  text-align: center;
+  white-space: pre-wrap;
+  line-height: 1.8;
+  min-height: 120px;
+  font-weight: 800;
+}
+
+.pdfBarcodeBox {
+  border: 2px solid rgba(14, 165, 164, .55);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.barcodeImg {
+  width: 160px;
+  height: 160px;
+  border-radius: 14px;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 8px;
+  margin: 12px auto 0;
+  display: block;
+  border: 1px solid rgba(15, 23, 42, .10);
+}
+
+.barcodeEmpty {
+  margin: 14px 12px 12px;
+  font-size: 12px;
+  color: rgba(15, 23, 42, .55);
+  text-align: center;
+  font-weight: 800;
+}
+
+.pdfFootBand {
+  margin: 16px 30px 18px;
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(37, 99, 235, .92), rgba(14, 165, 164, .92));
+}
+
+/* legacy evidence thumbs (still used in app if needed) */
+.pdfEvidenceImages {
+  display: none;
+}
+
+.evidenceThumb {
+  display: none;
+}
