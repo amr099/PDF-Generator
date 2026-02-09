@@ -13,12 +13,18 @@ const downloadLink = $("#downloadLink");
 
 // PDF fields
 const pdfSchoolName = $("#pdfSchoolName");
-const pdfAddress = $("#pdfAddress");
+const pdfEducationAdminHeader = $("#pdfEducationAdminHeader");
+const pdfEducationAdmin = $("#pdfEducationAdmin");
+const pdfReportType = $("#pdfReportType");
 const pdfExecutingGroup = $("#pdfExecutingGroup");
+const pdfTargetGroup = $("#pdfTargetGroup");
 const pdfBeneficiaries = $("#pdfBeneficiaries");
 const pdfExecutionDate = $("#pdfExecutionDate");
-const pdfExecutionPlace = $("#pdfExecutionPlace");
+const pdfDuration = $("#pdfDuration");
+const pdfBarcodeLink = $("#pdfBarcodeLink");
 const pdfGoals = $("#pdfGoals");
+const pdfTeacherName = $("#pdfTeacherName");
+const pdfPrincipalName = $("#pdfPrincipalName");
 const pdfGeneratedAt = $("#pdfGeneratedAt");
 const pdfRef = $("#pdfRef");
 
@@ -89,12 +95,18 @@ function cleanupOldBlobUrl() {
 
 function setPdfTextData(data) {
   pdfSchoolName.textContent = safeText(data.schoolName);
-  pdfAddress.textContent = safeText(data.address);
+  pdfEducationAdminHeader.textContent = safeText(data.educationAdmin);
+  pdfEducationAdmin.textContent = safeText(data.educationAdmin);
+  pdfReportType.textContent = safeText(data.reportType);
   pdfExecutingGroup.textContent = safeText(data.executingGroup);
+  pdfTargetGroup.textContent = safeText(data.targetGroup);
   pdfBeneficiaries.textContent = safeText(data.beneficiaries);
-  pdfExecutionDate.textContent = formatDateISOToAr(data.executionDate);
-  pdfExecutionPlace.textContent = safeText(data.executionPlace);
+  pdfExecutionDate.textContent = safeText(data.executionDate);
+  pdfDuration.textContent = safeText(data.duration);
+  pdfBarcodeLink.textContent = safeText(data.barcodeLink);
   pdfGoals.textContent = safeText(data.goals);
+  pdfTeacherName.textContent = safeText(data.teacherName);
+  pdfPrincipalName.textContent = safeText(data.principalName);
 
   // Meta
   pdfGeneratedAt.textContent = nowAr();
@@ -203,12 +215,17 @@ function getFormData() {
   const fd = new FormData(form);
   return {
     schoolName: fd.get("schoolName"),
-    address: fd.get("address"),
+    educationAdmin: fd.get("educationAdmin"),
+    reportType: fd.get("reportType"),
     executingGroup: fd.get("executingGroup"),
+    targetGroup: fd.get("targetGroup"),
     beneficiaries: fd.get("beneficiaries"),
     executionDate: fd.get("executionDate"),
-    executionPlace: fd.get("executionPlace"),
+    duration: fd.get("duration"),
+    barcodeLink: fd.get("barcodeLink"),
     goals: fd.get("goals"),
+    teacherName: fd.get("teacherName"),
+    principalName: fd.get("principalName"),
   };
 }
 
@@ -290,16 +307,21 @@ btnGenerate.addEventListener("click", () => {
 
 btnFillDemo.addEventListener("click", () => {
   form.schoolName.value = "ثانوية النور";
-  form.address.value = "الرياض — حي المروج";
+  form.educationAdmin.value = "الرياض";
+  form.reportType.value = "برنامج";
   form.executingGroup.value = "فريق التوعية الصحية";
+  form.targetGroup.value = "طالبات الصف الثالث ثانوي";
   form.beneficiaries.value = "120";
 
   // ثابت هجري 1447
   form.executionDate.value = "1447/01/01";
 
-  form.executionPlace.value = "قاعة الأنشطة";
+  form.duration.value = "يوم واحد";
+  form.barcodeLink.value = "https://example.com/qrcode";
   form.goals.value =
     "رفع الوعي الصحي لدى الطلبة.\nتعزيز السلوكيات الصحية اليومية.\nتقديم إرشادات عملية قابلة للتطبيق.";
+  form.teacherName.value = "أ. فاطمة علي";
+  form.principalName.value = "أ. نورة محمد";
 });
 
 // initial state

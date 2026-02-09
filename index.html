@@ -46,17 +46,34 @@
                                 required />
                         </label>
                         <label class="field">
-                            <span class="field__label">العنوان</span>
-                            <input class="field__input" name="address" type="text"
-                                placeholder="مثال: الرياض — حي المروج" required />
+                            <span class="field__label">إدارة التعليم في</span>
+                            <input class="field__input" name="educationAdmin" type="text" placeholder="مثال: الرياض"
+                                required />
                         </label>
                     </div>
 
                     <div class="form__row">
                         <label class="field">
+                            <span class="field__label">تقرير تنفيذ</span>
+                            <select class="field__input" name="reportType" required>
+                                <option value="">اختر نوع التقرير</option>
+                                <option value="مبادرة">مبادرة</option>
+                                <option value="برنامج">برنامج</option>
+                                <option value="احتياط">احتياط</option>
+                            </select>
+                        </label>
+                        <label class="field">
                             <span class="field__label">الفئة المنفذة</span>
                             <input class="field__input" name="executingGroup" type="text"
                                 placeholder="مثال: فريق التوعية الصحية" required />
+                        </label>
+                    </div>
+
+                    <div class="form__row">
+                        <label class="field">
+                            <span class="field__label">الفئة المستهدفة</span>
+                            <input class="field__input" name="targetGroup" type="text"
+                                placeholder="مثال: طالبات المرحلة الثانوية" required />
                         </label>
                         <label class="field">
                             <span class="field__label">عدد المستفيدين</span>
@@ -68,12 +85,34 @@
                     <div class="form__row">
                         <label class="field">
                             <span class="field__label">تاريخ التنفيذ (هجري)</span>
-                            <input class="field__input" name="executionDate" type="text" value="1447/01/01" required />
+                            <input class="field__input" name="executionDate" type="text" placeholder="مثال: 1447/01/01"
+                                required />
                         </label>
                         <label class="field">
-                            <span class="field__label">مكان التنفيذ</span>
-                            <input class="field__input" name="executionPlace" type="text"
-                                placeholder="مثال: قاعة الأنشطة" required />
+                            <span class="field__label">مدة التنفيذ</span>
+                            <input class="field__input" name="duration" type="text" placeholder="مثال: يوم واحد / أسبوع"
+                                required />
+                        </label>
+                    </div>
+
+                    <div class="form__row">
+                        <label class="field">
+                            <span class="field__label">رابط الباركود</span>
+                            <input class="field__input" name="barcodeLink" type="text"
+                                placeholder="مثال: https://example.com/qrcode" />
+                        </label>
+                        <label class="field">
+                            <span class="field__label">اسم المعلمة</span>
+                            <input class="field__input" name="teacherName" type="text" placeholder="مثال: أ. فاطمة علي"
+                                required />
+                        </label>
+                    </div>
+
+                    <div class="form__row">
+                        <label class="field">
+                            <span class="field__label">اسم المديرة</span>
+                            <input class="field__input" name="principalName" type="text"
+                                placeholder="مثال: أ. نورة محمد" required />
                         </label>
                     </div>
 
@@ -133,12 +172,15 @@
         <div id="pdfPage" class="pdfPage">
             <div class="pdfMoEHeader">
                 <div class="pdfMoETop">
-                    <div class="pdfMoEBlock">
-                        الإدارة العامة للتعليم<br />
-                        بالمنطقة<br />
-                        مكتب التعليم
+
+                    <div class="pdfMoELogo">
+                        <img src="./output-smallpngtools (1) (1).png" alt="شعار وزارة التعليم" class="pdfMoELogoImg" />
                     </div>
-                    <div class="pdfMoELogo">وزارة التعليم</div>
+                    <div class="pdfMoEBlock">
+                        وزارة التعليم<br />
+                        الإدارة العامة للتعليم في
+                        <span id="pdfEducationAdminHeader">—</span>
+                    </div>
                 </div>
                 <div class="pdfMoEBand"></div>
             </div>
@@ -155,24 +197,36 @@
                                     <div id="pdfSchoolName" class="pdfInfoVal">—</div>
                                 </div>
                                 <div class="pdfInfoRow">
-                                    <div class="pdfInfoKey">العنوان</div>
-                                    <div id="pdfAddress" class="pdfInfoVal">—</div>
+                                    <div class="pdfInfoKey">إدارة التعليم في</div>
+                                    <div id="pdfEducationAdmin" class="pdfInfoVal">—</div>
+                                </div>
+                                <div class="pdfInfoRow">
+                                    <div class="pdfInfoKey">تقرير تنفيذ</div>
+                                    <div id="pdfReportType" class="pdfInfoVal">—</div>
                                 </div>
                                 <div class="pdfInfoRow">
                                     <div class="pdfInfoKey">الفئة المنفذة</div>
                                     <div id="pdfExecutingGroup" class="pdfInfoVal">—</div>
                                 </div>
                                 <div class="pdfInfoRow">
+                                    <div class="pdfInfoKey">الفئة المستهدفة</div>
+                                    <div id="pdfTargetGroup" class="pdfInfoVal">—</div>
+                                </div>
+                                <div class="pdfInfoRow">
                                     <div class="pdfInfoKey">عدد المستفيدين</div>
                                     <div id="pdfBeneficiaries" class="pdfInfoVal">—</div>
                                 </div>
                                 <div class="pdfInfoRow">
-                                    <div class="pdfInfoKey">تاريخ التنفيذ</div>
+                                    <div class="pdfInfoKey">تاريخ التنفيذ (هجري)</div>
                                     <div id="pdfExecutionDate" class="pdfInfoVal">—</div>
                                 </div>
                                 <div class="pdfInfoRow">
-                                    <div class="pdfInfoKey">مكان التنفيذ</div>
-                                    <div id="pdfExecutionPlace" class="pdfInfoVal">—</div>
+                                    <div class="pdfInfoKey">مدة التنفيذ</div>
+                                    <div id="pdfDuration" class="pdfInfoVal">—</div>
+                                </div>
+                                <div class="pdfInfoRow">
+                                    <div class="pdfInfoKey">رابط الباركود</div>
+                                    <div id="pdfBarcodeLink" class="pdfInfoVal">—</div>
                                 </div>
                             </div>
 
@@ -209,15 +263,29 @@
                         </div>
                     </div>
                 </div>
-
+                <div style="display: flex; flex-direction: row; gap: 10px; justify-content: space-between;">
+                    <div class="pdfNameBlock">
+                        <span class="pdfNameLabel">اسم المعلمة:</span>
+                        <span id="pdfTeacherName" class="pdfNameValue">—</span>
+                    </div>
+                    <div class="pdfNameBlock">
+                        <span class="pdfNameLabel">اسم المديرة:</span>
+                        <span id="pdfPrincipalName" class="pdfNameValue">—</span>
+                    </div>
+                </div>
                 <div class="pdfBottomRow">
                     <div class="pdfNamesBox">
-                        <div class="pdfPanelHeader">معلومات إضافية</div>
+                        <div class="pdfPanelHeader">بيانات المدرسة</div>
                         <div class="pdfNamesBody">
-                            <div><span style="color:rgba(15,23,42,.70);font-weight:900">رقم المرجع:</span> <span
-                                    id="pdfRef">AUTO</span></div>
-                            <div style="margin-top:6px"><span style="color:rgba(15,23,42,.70);font-weight:900">تم
-                                    الإنشاء:</span> <span id="pdfGeneratedAt">—</span></div>
+
+                            <div class="pdfMetaRow">
+                                <span class="pdfMetaLabel">رقم المرجع:</span>
+                                <span id="pdfRef" class="pdfMetaValue">AUTO</span>
+                            </div>
+                            <div class="pdfMetaRow">
+                                <span class="pdfMetaLabel">تم الإنشاء:</span>
+                                <span id="pdfGeneratedAt" class="pdfMetaValue">—</span>
+                            </div>
                         </div>
                     </div>
 

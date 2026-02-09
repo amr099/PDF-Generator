@@ -23,6 +23,10 @@ body {
   height: 100%;
 }
 
+.pdfMoELogo img {
+  filter: brightness(0) invert(1);
+}
+
 body {
   margin: 0;
   font-family: "Cairo", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
@@ -345,40 +349,46 @@ body {
 
 .pdfMoEHeader {
   padding: 18px 30px 10px;
+  background: linear-gradient(90deg,
+      rgba(33, 114, 169, 1) 0%,
+      rgba(52, 155, 162, 1) 50%,
+      rgba(68, 186, 122, 1) 100%);
+  color: #ffffff;
 }
 
 .pdfMoETop {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: right;
   gap: 16px;
 }
 
 .pdfMoEBlock {
   font-weight: 800;
-  color: #0f172a;
+  color: #ffffff;
   line-height: 1.35;
   font-size: 14px;
 }
 
 .pdfMoELogo {
-  width: 210px;
-  height: 46px;
-  border-radius: 10px;
-  background: linear-gradient(90deg, rgba(14, 165, 164, .16), rgba(37, 99, 235, .12));
-  border: 1px solid rgba(15, 23, 42, .10);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
-  color: rgba(15, 23, 42, .55);
+}
+
+.pdfMoELogoImg {
+  max-width: 120px;
+  height: auto;
 }
 
 .pdfMoEBand {
   margin-top: 12px;
   height: 8px;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(37, 99, 235, .90), rgba(14, 165, 164, .90));
+  background: linear-gradient(90deg,
+      rgba(33, 114, 169, 1) 0%,
+      rgba(52, 155, 162, 1) 50%,
+      rgba(68, 186, 122, 1) 100%);
 }
 
 .pdfMoEBody {
@@ -407,7 +417,10 @@ body {
   padding: 10px 14px;
   font-weight: 900;
   color: #ffffff;
-  background: linear-gradient(90deg, rgba(37, 99, 235, .95), rgba(14, 165, 164, .90));
+  background: linear-gradient(90deg,
+      rgba(33, 114, 169, 1) 0%,
+      rgba(52, 155, 162, 1) 50%,
+      rgba(68, 186, 122, 1) 100%);
   text-align: center;
   font-size: 18px;
 }
@@ -429,7 +442,10 @@ body {
 .pdfInfoKey {
   padding: 10px 10px;
   border-radius: 12px;
-  background: linear-gradient(90deg, rgba(37, 99, 235, .90), rgba(14, 165, 164, .85));
+  background: linear-gradient(90deg,
+      rgba(33, 114, 169, 1) 0%,
+      rgba(52, 155, 162, 1) 50%,
+      rgba(68, 186, 122, 1) 100%);
   color: #ffffff;
   font-weight: 900;
   display: flex;
@@ -552,7 +568,52 @@ body {
   margin: 16px 30px 18px;
   height: 14px;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(37, 99, 235, .92), rgba(14, 165, 164, .92));
+  background: linear-gradient(90deg,
+      rgba(33, 114, 169, 1) 0%,
+      rgba(52, 155, 162, 1) 50%,
+      rgba(68, 186, 122, 1) 100%);
+}
+
+.pdfNamesInline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 10px;
+}
+
+.pdfNameBlock {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.pdfNameLabel {
+  font-weight: 900;
+  color: rgba(15, 23, 42, .85);
+}
+
+.pdfNameValue {
+  min-width: 120px;
+  border-bottom: 1px solid rgba(15, 23, 42, .35);
+  padding-bottom: 2px;
+}
+
+.pdfMetaRow {
+  margin-top: 4px;
+  font-size: 12px;
+  text-align: right;
+}
+
+.pdfMetaLabel {
+  font-weight: 900;
+  color: rgba(15, 23, 42, .70);
+}
+
+.pdfMetaValue {
+  font-weight: 800;
+  color: rgba(15, 23, 42, .90);
 }
 
 /* legacy evidence thumbs (still used in app if needed) */
