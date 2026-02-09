@@ -23,6 +23,8 @@ body {
   height: 100%;
 }
 
+
+
 .pdfMoELogo img {
   filter: brightness(0) invert(1);
 }
@@ -359,7 +361,7 @@ body {
 .pdfMoETop {
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: ri;
   gap: 16px;
 }
 
