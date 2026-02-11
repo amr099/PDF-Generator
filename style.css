@@ -23,6 +23,17 @@ body {
   height: 100%;
 }
 
+#pdfBarcodeLink {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+#pdfDynamicReportType,
+#pdfSchoolNameTitle {
+  background-color: #18425a;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
 
 
 .pdfMoELogo img {

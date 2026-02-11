@@ -54,13 +54,10 @@
 
                     <div class="form__row">
                         <label class="field">
-                            <span class="field__label">تقرير تنفيذ</span>
-                            <select class="field__input" name="reportType" required>
-                                <option value="">اختر نوع التقرير</option>
-                                <option value="مبادرة">مبادرة</option>
-                                <option value="برنامج">برنامج</option>
-                                <option value="احتياط">احتياط</option>
-                            </select>
+                            <span class="field__label"> عنوان التقرير</span>
+                            <input class="field__input" name="reportType" required>
+
+
                         </label>
                         <label class="field">
                             <span class="field__label">الفئة المنفذة</span>
@@ -96,25 +93,19 @@
                     </div>
 
                     <div class="form__row">
-                        <label class="field">
-                            <span class="field__label">رابط الباركود</span>
-                            <input class="field__input" name="barcodeLink" type="text"
-                                placeholder="مثال: https://example.com/qrcode" />
-                        </label>
+
                         <label class="field">
                             <span class="field__label">اسم المعلمة</span>
                             <input class="field__input" name="teacherName" type="text" placeholder="مثال: أ. فاطمة علي"
                                 required />
                         </label>
-                    </div>
-
-                    <div class="form__row">
                         <label class="field">
                             <span class="field__label">اسم المديرة</span>
                             <input class="field__input" name="principalName" type="text"
                                 placeholder="مثال: أ. نورة محمد" required />
                         </label>
                     </div>
+
 
                     <label class="field">
                         <span class="field__label">الأهداف</span>
@@ -130,10 +121,17 @@
                     </label>
 
                     <label class="field">
+                        <span class="field__label">رابط الباركود</span>
+                        <input class="field__input" name="barcodeLink" type="text"
+                            placeholder="مثال: https://example.com/qrcode" />
+                    </label>
+
+                    <label class="field">
                         <span class="field__label">صورة الباركود (اختياري)</span>
                         <input class="field__input" name="barcodeImage" type="file" accept="image/*" />
                         <span class="field__help">يمكنك رفع صورة باركود / QR جاهزة ليتم تضمينها في PDF.</span>
                     </label>
+
                 </form>
 
                 <div class="card__footer">
@@ -170,9 +168,8 @@
     <!-- PDF template (rendered to canvas, then to PDF) -->
     <div class="printRoot" aria-hidden="true">
         <div id="pdfPage" class="pdfPage">
-            <div class="pdfMoEHeader">
+            <div class="pdfMoEHeader" style="margin: auto; display: flex; justify-content: center;">
                 <div class="pdfMoETop">
-
                     <div class="pdfMoELogo">
                         <img src="./output-smallpngtools (1) (1).png" alt="شعار وزارة التعليم" class="pdfMoELogoImg" />
                     </div>
@@ -185,6 +182,12 @@
                 <div class="pdfMoEBand"></div>
             </div>
 
+            <div class="pdfMainTitle">
+                <h1 id="pdfSchoolNameTitle" style="text-align: center;">—</h1>
+                <!-- <span class="title-separator">|</span> -->
+                <h3 id="pdfDynamicReportType" style="text-align: center;">عنوان التقرير</h3>
+            </div>
+
 
             <div class="pdfMoEBody">
                 <div class="pdfTwoCol">
@@ -193,7 +196,7 @@
                         <div class="pdfPanelHeader" style="display: none;">تقرير تنفيذ برنامج (تغطية)</div>
                         <div class="pdfPanelBody">
                             <div class="pdfInfoGrid">
-                                <div class="pdfInfoRow">
+                                <div class="pdfInfoRow" style="display: none;">
                                     <div class="pdfInfoKey">اسم المدرسة</div>
                                     <div id="pdfSchoolName" class="pdfInfoVal">—</div>
                                 </div>
@@ -201,7 +204,7 @@
                                     <div class="pdfInfoKey">إدارة التعليم في</div>
                                     <div id="pdfEducationAdmin" class="pdfInfoVal">—</div>
                                 </div>
-                                <div class="pdfInfoRow">
+                                <div class="pdfInfoRow" style="display: none;">
                                     <div class="pdfInfoKey">تقرير تنفيذ</div>
                                     <div id="pdfReportType" class="pdfInfoVal">—</div>
                                 </div>
@@ -229,6 +232,9 @@
                                     <div class="pdfInfoKey">رابط الباركود</div>
                                     <div id="pdfBarcodeLink" class="pdfInfoVal">—</div>
                                 </div>
+                                <div class="pdfInfoRow">صورة الباركود</div>
+                                <img id="barcodeImg" class="barcodeImg is-hidden" alt="صورة الباركود" />
+                                <div id="barcodeEmpty" class="barcodeEmpty">لم يتم إرفاق صورة باركود</div>
                             </div>
 
                             <div class="pdfPanel pdfPanel--green" style="margin-top:12px">
@@ -274,8 +280,8 @@
                         <span id="pdfPrincipalName" class="pdfNameValue">—</span>
                     </div>
                 </div>
-                <div class="pdfBottomRow" style="display: none;">
-                    <div class="pdfNamesBox">
+                <div class="pdfBottomRow">
+                    <div class=" pdfNamesBox" style="display: none;">
                         <div class="pdfPanelHeader">بيانات المدرسة</div>
                         <div class="pdfNamesBody">
 
@@ -290,8 +296,8 @@
                         </div>
                     </div>
 
-                    <div class="pdfBarcodeBox">
-                        <div class="pdfPanelHeader">الباركود</div>
+                    <div class="pdfBarcodeBox" style="display: none;">
+                        <div class="pdfPanelHeader">صورة الباركود</div>
                         <img id="barcodeImg" class="barcodeImg is-hidden" alt="صورة الباركود" />
                         <div id="barcodeEmpty" class="barcodeEmpty">لم يتم إرفاق صورة باركود</div>
                     </div>

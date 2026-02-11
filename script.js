@@ -2,6 +2,8 @@
 
 const $ = (sel) => document.querySelector(sel);
 
+const pdfDynamicReportType = $("#pdfDynamicReportType");
+const pdfSchoolNameTitle = $("#pdfSchoolNameTitle");
 const form = $("#infoForm");
 const btnGenerate = $("#btnGenerate");
 const btnFillDemo = $("#btnFillDemo");
@@ -94,6 +96,18 @@ function cleanupOldBlobUrl() {
 }
 
 function setPdfTextData(data) {
+  const school = safeText(data.schoolName);
+  const type = safeText(data.reportType);
+
+  // Update the top centered title
+  pdfSchoolNameTitle.textContent = school;
+  pdfDynamicReportType.textContent = `${type}`;
+
+  // Keep your existing updates for the sidebar/grid
+  pdfSchoolName.textContent = school;
+  pdfReportType.textContent = type;
+
+  pdfEducationAdminHeader.textContent = safeText(data.educationAdmin);
   pdfSchoolName.textContent = safeText(data.schoolName);
   pdfEducationAdminHeader.textContent = safeText(data.educationAdmin);
   pdfEducationAdmin.textContent = safeText(data.educationAdmin);
