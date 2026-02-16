@@ -95,12 +95,12 @@
                     <div class="form__row">
 
                         <label class="field">
-                            <span class="field__label">اسم المعلمة</span>
+                            <span class="field__label">اسم المعلم/المعلمة</span>
                             <input class="field__input" name="teacherName" type="text" placeholder="مثال: أ. فاطمة علي"
                                 required />
                         </label>
                         <label class="field">
-                            <span class="field__label">اسم المديرة</span>
+                            <span class="field__label">اسم المدير/المديرة</span>
                             <input class="field__input" name="principalName" type="text"
                                 placeholder="مثال: أ. نورة محمد" required />
                         </label>
@@ -122,7 +122,7 @@
 
                     <label class="field">
                         <span class="field__label">رابط الباركود</span>
-                        <input class="field__input" name="barcodeLink" type="text"
+                        <input class="field__input" name="barcodeLink" type="link"
                             placeholder="مثال: https://example.com/qrcode" />
                     </label>
 
@@ -228,20 +228,23 @@
                                     <div class="pdfInfoKey">مدة التنفيذ</div>
                                     <div id="pdfDuration" class="pdfInfoVal">—</div>
                                 </div>
+                               
+                                
                                 <div class="pdfInfoRow">
-                                    <div class="pdfInfoKey">رابط الباركود</div>
-                                    <div id="pdfBarcodeLink" class="pdfInfoVal">—</div>
+                                    <!-- <div class="pdfInfoKey">رابط الباركود</div> -->
+                                    
                                 </div>
                                 <!-- <div class="pdfInfoRow">صورة الباركود</div> -->
-                                <img id="barcodeImg" class="barcodeImg is-hidden" alt="صورة الباركود" />
+                               
                                 <!-- <div id="barcodeEmpty" class="barcodeEmpty">لم يتم إرفاق صورة باركود</div> -->
                             </div>
 
-                            <div class="pdfPanel pdfPanel--green" style="margin-top:12px">
+                            <div class="pdfPanel pdfPanel--green" style="margin-top:12px ;width: 100%;">
                                 <div class="pdfPanelHeader">أهداف البرنامج</div>
                                 <div id="pdfGoals" class="pdfBigBox">—</div>
                             </div>
-
+                            <img id="barcodeImg" class="barcodeImg is-hidden" alt="صورة الباركود" />
+                            <div id="pdfBarcodeLink" class="" style="text-align: center; margin: auto;">—</div>
                         </div>
                     </div>
 
@@ -272,11 +275,11 @@
                 </div>
                 <div style="display: flex; flex-direction: row; gap: 10px; justify-content: space-between;">
                     <div class="pdfNameBlock">
-                        <span class="pdfNameLabel">اسم المعلمة:</span>
+                        <span class="pdfNameLabel">اسم المعلم/المعلمة</span>
                         <span id="pdfTeacherName" class="pdfNameValue">—</span>
                     </div>
                     <div class="pdfNameBlock">
-                        <span class="pdfNameLabel">اسم المديرة:</span>
+                        <span class="pdfNameLabel">اسم المدير/المديرة:</span>
                         <span id="pdfPrincipalName" class="pdfNameValue">—</span>
                     </div>
                 </div>

@@ -28,11 +28,18 @@ body {
   font-weight: 400;
 }
 
+#pdfSchoolNameTitle{
+  transform: translateY(-20px);
+  z-index: 9;
+}
+
 #pdfDynamicReportType,
 #pdfSchoolNameTitle {
   background-color: #18425a;
   color: #ffffff;
-  margin-bottom: 10px;
+  margin:0 auto 10px auto;
+  border-radius: 8px;
+  max-width: 70%;
 }
 
 
