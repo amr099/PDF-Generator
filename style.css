@@ -29,7 +29,6 @@ body {
 }
 
 #pdfSchoolNameTitle{
-  transform: translateY(-20px);
   z-index: 9;
 }
 
