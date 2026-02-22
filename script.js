@@ -212,7 +212,7 @@ async function generatePdf() {
   cleanupOldBlobUrl();
   lastBlobUrl = URL.createObjectURL(blob);
 
-  const filenameBase = String(data.schoolName || "report").trim().replace(/[\\/:*?"<>|]/g, "-");
+  const filenameBase = String(data.reportType || "report").trim().replace(/[\\/:*?"<>|]/g, "-");
   downloadLink.download = `تقرير-${filenameBase}.pdf`;
 
   setPreviewEnabled(true, lastBlobUrl);

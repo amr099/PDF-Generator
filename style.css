@@ -40,6 +40,13 @@ body {
   border-radius: 8px;
   max-width: 70%;
 }
+#pdfSchoolNameTitle {
+  background-color: #18425a;
+  color: #ffffff;
+  margin:0 auto 10px auto;
+  border-radius: 8px;
+  max-width: 400px;
+}
 
 
 .pdfMoELogo img {
@@ -494,9 +501,14 @@ body {
   border: 2px solid rgba(14, 165, 164, .45);
   border-radius: 14px;
   background: #ffffff;
-  min-height: 160px;
+  min-height: 360px;
+  height: 100%;
   padding: 10px 12px;
-  /* white-space: pre-wrap; */
+  /* word-break: break-word;
+  white-space: pre-wrap; */
+  overflow-wrap: anywhere; 
+  white-space: pre-wrap;
+  word-break: normal;
   line-height: 1.8;
 }
 
