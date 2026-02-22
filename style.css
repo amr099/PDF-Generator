@@ -486,8 +486,8 @@ body {
   display: flex;
   align-items: center;
   min-height: 44px;
-  word-break: break-word;
-  white-space: pre-wrap;
+  /* word-break: break-word;
+  white-space: pre-wrap; */
 }
 
 .pdfBigBox {
