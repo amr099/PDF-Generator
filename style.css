@@ -496,7 +496,7 @@ body {
   background: #ffffff;
   min-height: 160px;
   padding: 10px 12px;
-  white-space: pre-wrap;
+  /* white-space: pre-wrap; */
   line-height: 1.8;
 }
 
@@ -553,7 +553,7 @@ body {
 .pdfNamesBody {
   padding: 12px 14px;
   text-align: center;
-  white-space: pre-wrap;
+  /* white-space: pre-wrap; */
   line-height: 1.8;
   min-height: 120px;
   font-weight: 800;
