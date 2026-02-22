@@ -165,11 +165,21 @@ async function generatePdf() {
   // Wait for images to render
   await new Promise(r => setTimeout(r, 300));
 
+  // Ensure Arabic/Cairo font is loaded before capture (fixes Arabic in PDF)
+  await document.fonts.ready;
+
   const canvas = await html2canvas(pdfPage, {
     backgroundColor: "#ffffff",
     scale: 2,
     useCORS: true,
     logging: false,
+    onclone(clonedDoc) {
+      const clonedPage = clonedDoc.getElementById("pdfPage");
+      if (clonedPage) {
+        clonedPage.setAttribute("dir", "rtl");
+        clonedPage.setAttribute("lang", "ar");
+      }
+    },
   });
 
   const imgData = canvas.toDataURL("image/png");
